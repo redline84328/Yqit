@@ -1,0 +1,132 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Yaqut ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      height: 100vh;
+      background: url("yaqut.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(7px);
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s ease;
+      z-index: 0;
+    }
+
+    /* Bənövşəyi overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(128, 0, 128, 0.5); /* bənövşəyi rəng */
+      z-index: -1;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-align: center;
+      transition: 0.4s;
+    }
+
+    .btn {
+      padding: 18px 35px;
+      margin: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .full-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      font-size: 5em !important;
+      border-radius: 0 !important;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">Salam Yaqut ❤️<br>Mənimlə sevgili olarsan?</h1>
+  <div>
+    <button class="btn yes" id="yesBtn">Bəli 💘</button>
+    <button class="btn no" id="noBtn">Xeyr 😢</button>
+  </div>
+
+  <script>
+    let noClicks = 0;
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+
+    const messages = [
+      "Əminsən? 😟",
+      "Əmin-əminsən? 😢",
+      "Bəlkə yenidən düşünəsən... 😥",
+      "Məni kədərləndirmə 😞",
+      "Bax, 'Bəli' necə gözəldir 😍",
+      "Tək cavab 'Bəli'dir 😌",
+    ];
+
+    noBtn.onclick = () => {
+      if (noClicks < messages.length) {
+        question.innerText = messages[noClicks];
+      } else {
+        question.innerText = "Seçim artıq sənə qalmır 😅";
+        noBtn.classList.add("hidden");
+        yesBtn.classList.add("full-screen");
+      }
+      noClicks++;
+      yesBtn.style.fontSize = (1.5 + noClicks * 0.4) + "em";
+      yesBtn.style.padding = (20 + noClicks * 5) + "px " + (30 + noClicks * 10) + "px";
+    };
+
+    yesBtn.onclick = () => {
+      question.innerText = "Çox sağ ol, Yaqut! ❤️";
+      yesBtn.classList.add("hidden");
+      noBtn.classList.add("hidden");
+      document.body.style.background = "#ffe0f0";
+      document.body.style.color = "#000";
+      document.body.style.backdropFilter = "none";
+    };
+  </script>
+
+</body>
+</html>
